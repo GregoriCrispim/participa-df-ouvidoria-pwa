@@ -1,0 +1,404 @@
+/**
+ * Participa DF - Estilos de Acessibilidade
+ * 
+ * Estilos específicos para garantir conformidade com WCAG 2.1 AA
+ * Inclui estados de foco, indicadores visuais e ajustes para tecnologias assistivas
+ */
+
+/* ===========================================
+   FOCO VISÍVEL - WCAG 2.4.7
+   =========================================== */
+
+/* Foco padrão para todos elementos interativos */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Foco específico para botões */
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(0, 90, 156, 0.2);
+}
+
+/* Foco para inputs */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 90, 156, 0.2);
+}
+
+/* Foco para links dentro de texto */
+p a:focus-visible,
+li a:focus-visible {
+  background-color: var(--color-primary-light);
+  box-decoration-break: clone;
+}
+
+/* ===========================================
+   INDICADORES DE ESTADO ACESSÍVEIS
+   =========================================== */
+
+/* Campos obrigatórios */
+.field-required::after {
+  content: " *";
+  color: var(--color-error);
+  font-weight: bold;
+}
+
+/* Campos com erro */
+.field-error input,
+.field-error textarea,
+.field-error select {
+  border-color: var(--color-error);
+  border-width: 2px;
+}
+
+.field-error .field-error-message {
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.field-error .field-error-message::before {
+  content: "⚠";
+  font-size: 1.2em;
+}
+
+/* Campos válidos */
+.field-valid input,
+.field-valid textarea,
+.field-valid select {
+  border-color: var(--color-success);
+  border-width: 2px;
+}
+
+/* ===========================================
+   ELEMENTOS INTERATIVOS
+   =========================================== */
+
+/* Área de clique mínima de 44x44px - WCAG 2.5.5 */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Links de bloco clicáveis */
+.clickable-card {
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.clickable-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.clickable-card:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+.clickable-card:active {
+  transform: translateY(0);
+}
+
+/* ===========================================
+   NAVEGAÇÃO POR TECLADO
+   =========================================== */
+
+/* Indicador de navegação atual (sem ícone na navbar) */
+[aria-current="page"]:not(.nav-link),
+[aria-current="step"] {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+/* Menus e dropdowns */
+[role="menu"],
+[role="listbox"] {
+  outline: none;
+}
+
+[role="menuitem"]:focus,
+[role="option"]:focus {
+  background-color: var(--color-primary-light);
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+/* Tab panels */
+[role="tabpanel"]:focus {
+  outline: none;
+}
+
+[role="tabpanel"]:focus-visible {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 4px;
+}
+
+/* ===========================================
+   TEXTO E LEGIBILIDADE
+   =========================================== */
+
+/* Garantir legibilidade mínima */
+body {
+  font-size: max(16px, 1rem);
+  letter-spacing: 0.01em;
+  word-spacing: 0.05em;
+}
+
+/* Espaçamento de parágrafo adequado */
+p + p {
+  margin-top: var(--spacing-md);
+}
+
+/* Links sem sublinhado (conforme solicitação) */
+a:not(.btn) {
+  text-decoration: none;
+}
+
+/* Abreviações com explicação */
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* ===========================================
+   FORMULÁRIOS ACESSÍVEIS
+   =========================================== */
+
+/* Labels sempre visíveis */
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-primary);
+}
+
+/* Grupos de campos relacionados */
+fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+legend {
+  font-weight: 700;
+  padding: 0 var(--spacing-sm);
+  color: var(--color-text-primary);
+}
+
+/* Texto de ajuda */
+.field-help {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+}
+
+/* Checkboxes e radios acessíveis */
+.checkbox-wrapper,
+.radio-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  min-height: 44px;
+  padding: var(--spacing-xs) 0;
+}
+
+.checkbox-wrapper input[type="checkbox"],
+.radio-wrapper input[type="radio"] {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.checkbox-wrapper label,
+.radio-wrapper label {
+  margin: 0;
+  cursor: pointer;
+  padding-top: 2px;
+}
+
+/* ===========================================
+   MÍDIA E CONTEÚDO
+   =========================================== */
+
+/* Imagens com descrição */
+figure {
+  margin: var(--spacing-md) 0;
+}
+
+figcaption {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+  font-style: italic;
+}
+
+/* Vídeos acessíveis */
+video {
+  max-width: 100%;
+}
+
+/* Indicador de carregamento acessível */
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-secondary);
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner {
+    animation: none;
+    border-top-color: var(--color-primary);
+    border-right-color: var(--color-primary);
+  }
+}
+
+/* ===========================================
+   NOTIFICAÇÕES E ALERTAS
+   =========================================== */
+
+/* Região de anúncios para leitores de tela */
+[role="status"],
+[role="alert"],
+[aria-live] {
+  /* Região visualmente oculta mas acessível */
+}
+
+.sr-only-alert {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Toast notifications acessíveis */
+.toast {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-toast);
+  max-width: 90vw;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* ===========================================
+   MODO DE LINGUAGEM SIMPLES
+   =========================================== */
+
+[data-simple-language="true"] {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+[data-simple-language="true"] h1,
+[data-simple-language="true"] h2,
+[data-simple-language="true"] h3 {
+  margin-bottom: var(--spacing-lg);
+}
+
+[data-simple-language="true"] p {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* ===========================================
+   UTILITÁRIOS DE ACESSIBILIDADE
+   =========================================== */
+
+/* Ocultar visualmente mas manter acessível */
+.visually-hidden:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Classe para pular conteúdo repetitivo */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  padding: var(--spacing-md) var(--spacing-lg);
+  z-index: var(--z-skip-link);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+  transition: top var(--transition-fast);
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Aumentar área de toque em dispositivos móveis */
+@media (pointer: coarse) {
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+  }
+  
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 24px;
+    height: 24px;
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "participa-df-api-mock",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "API Mock para o Participa DF - Ouvidoria PWA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^9.0.1"
+  }
+}

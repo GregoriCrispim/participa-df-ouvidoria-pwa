@@ -1,0 +1,172 @@
+/**
+ * Estilos do AudioRecorder
+ */
+
+.audio-recorder {
+  background-color: var(--color-background-alt);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.audio-recorder--recording {
+  border-style: solid;
+  border-color: var(--color-error);
+  background: linear-gradient(180deg, rgba(255, 82, 82, 0.12), rgba(0, 0, 0, 0));
+  box-shadow: 0 0 0 4px rgba(255, 82, 82, 0.12), 0 12px 26px rgba(0, 0, 0, 0.2);
+  animation: recordingGlow 1.6s ease-in-out infinite;
+}
+
+.audio-recorder--paused {
+  border-color: var(--color-warning);
+  background: linear-gradient(180deg, rgba(255, 152, 0, 0.12), rgba(0, 0, 0, 0));
+  animation: none;
+}
+
+.audio-recorder--unsupported,
+.audio-recorder--denied {
+  background-color: var(--color-warning-bg);
+  border-color: var(--color-warning);
+  border-style: solid;
+}
+
+.unsupported-message,
+.denied-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-md);
+}
+
+.permission-steps {
+  text-align: left;
+  max-width: 300px;
+  margin: 0 auto var(--spacing-md);
+  padding-left: var(--spacing-lg);
+}
+
+.permission-steps li {
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Status da gravação */
+.recorder-status {
+  margin-bottom: var(--spacing-md);
+  min-height: 40px;
+}
+
+.recording-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background-color: var(--color-error-bg);
+  border-radius: var(--border-radius-md);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.recording-indicator.paused {
+  background-color: var(--color-warning-bg);
+  animation: none;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes recordingGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(255, 82, 82, 0.08), 0 10px 24px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(255, 82, 82, 0.16), 0 14px 32px rgba(0, 0, 0, 0.24);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recording-indicator {
+    animation: none;
+  }
+}
+
+.recording-dot {
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-error);
+  border-radius: 50%;
+  animation: blink 1s ease-in-out infinite;
+}
+
+.recording-indicator.paused .recording-dot {
+  background-color: var(--color-warning);
+  animation: none;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recording-dot {
+    animation: none;
+  }
+}
+
+.recording-time {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+}
+
+.recording-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.recorded-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background-color: var(--color-success-bg);
+  border-radius: var(--border-radius-md);
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+/* Controles */
+.recorder-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Texto de ajuda */
+.recorder-help {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.recorder-description .form-field {
+  text-align: left;
+  margin-top: var(--spacing-md);
+}
